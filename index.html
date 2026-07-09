@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8B956D">
     <title>Riesling Boyz</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#8B956D">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Riesling Boyz">
@@ -18,266 +18,154 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #E8E4D5 0%, #A8B89F 100%);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 400px;
             width: 100%;
+            background: white;
+            border-radius: 32px;
+            padding: 32px 24px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             text-align: center;
-            z-index: 10;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .logo {
             font-size: 80px;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in;
+            margin-bottom: 12px;
         }
 
         h1 {
-            color: #5A6347;
-            font-size: 32px;
-            margin-bottom: 10px;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            color: #7A845D;
-            font-size: 16px;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        .install-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .install-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 18px 30px;
-            border: none;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-        }
-
-        .install-btn:active {
-            transform: scale(0.98);
-        }
-
-        .install-btn-android {
-            background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        .install-btn-ios {
-            background: linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%);
-            color: white;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            animation: pulse-ios 2s infinite;
-        }
-
-        .icon-android {
             font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #5A6347;
         }
 
-        .icon-ios {
-            font-size: 32px;
-            filter: drop-shadow(0 2px 4px rgba(255,255,255,0.3));
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(139, 149, 109, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 30px rgba(139, 149, 109, 0.6);
-            }
-        }
-
-        @keyframes pulse-ios {
-            0%, 100% {
-                box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            }
-            50% {
-                box-shadow: 0 6px 35px rgba(0,0,0,0.5);
-            }
-        }
-
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
+        .sub {
+            color: #7A845D;
+            font-size: 14px;
+            margin-bottom: 32px;
         }
 
         .btn {
             display: block;
-            padding: 18px 30px;
-            border-radius: 15px;
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border: none;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s;
+            text-align: center;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 2px solid transparent;
         }
 
         .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary {
+            background: #8B956D;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary {
+            background: #f2f2f7;
+            color: #5A6347;
+            border: 1px solid #ddd;
+        }
+
+        .btn-chrome {
+            background: #4285F4;
+            color: white;
+        }
+
+        .divider {
+            margin: 20px 0;
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        .navigation {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 14px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:active {
             transform: scale(0.98);
         }
 
-        .btn-menu {
+        .nav-menu {
             background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
             color: white;
         }
 
-        .btn-reserve {
+        .nav-reserve {
             background: linear-gradient(135deg, #C8D8E8 0%, #A8C0D8 100%);
             color: #4A5A6A;
         }
 
-        .btn-call {
+        .nav-call {
             background: linear-gradient(135deg, #E8E4D5 0%, #D8D4C5 100%);
             color: #5A5347;
         }
 
-        .btn-events {
+        .nav-events {
             background: linear-gradient(135deg, #B8C8A8 0%, #98A888 100%);
             color: white;
         }
 
-        .btn-about {
+        .nav-about {
             background: linear-gradient(135deg, #D8E4D5 0%, #B8C4B5 100%);
             color: #4A5347;
         }
 
-        .btn-contacts {
+        .nav-contacts {
             background: linear-gradient(135deg, #C8D4E8 0%, #A8B4C8 100%);
             color: #3A4A5A;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.show {
-            display: flex;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .modal-content h3 {
-            color: #5A6347;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-
-        .modal-content p {
-            color: #6A7357;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-
-        .modal-content .step {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .modal-content .step-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .modal-close {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .ornament {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            pointer-events: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-height: 700px) {
-            .logo {
-                font-size: 60px;
-                margin-bottom: 15px;
-            }
-            h1 {
-                font-size: 26px;
-            }
-            .btn {
-                padding: 15px 25px;
-                font-size: 16px;
-            }
+        .note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -285,105 +173,137 @@
     <div class="container">
         <div class="logo">🍷</div>
         <h1>Riesling Boyz</h1>
-        <p class="subtitle">винное бистро</p>
+        <div class="sub">Установите приложение на телефон</div>
 
-        <div class="install-buttons" id="installButtons">
-            <button class="install-btn install-btn-android" id="installBtnAndroid">
-                <span class="icon-android">🤖</span>
-                <span>Установить для Android</span>
-            </button>
-            <button class="install-btn install-btn-ios" id="installBtnIOS">
-                <span class="icon-ios"></span>
-                <span>Установить для iPhone</span>
-            </button>
+        <div id="androidSection">
+            <button class="btn btn-primary" id="installBtn">📲 Установить (Android)</button>
+            <button class="btn btn-chrome" id="openChromeBtn">🌐 Открыть в Chrome</button>
         </div>
 
-        <div class="buttons">
-            <a href="https://project15895556.tilda.ws/#menu" class="btn btn-menu">📋 Меню</a>
-            <a href="https://project15895556.tilda.ws/#openReMarkedWidget" class="btn btn-reserve">📅 Забронировать</a>
-            <a href="tel:+79252553334" class="btn btn-call">📞 Позвонить</a>
-            <a href="https://project15895556.tilda.ws/#events" class="btn btn-events">🎉 События</a>
-            <a href="https://project15895556.tilda.ws/#about" class="btn btn-about">ℹ️ О нас</a>
-            <a href="https://rieslingboyz.ru/#contacts" class="btn btn-contacts">📍 Контакты</a>
-        </div>
-    </div>
+        <div class="divider">или</div>
 
-    <div class="modal" id="iosModal">
-        <div class="modal-content">
-            <h3>Установка на iPhone</h3>
-            <div class="step">
-                <span class="step-icon"></span>
-                <span>Нажмите кнопку "Поделиться"</span>
-            </div>
-            <div class="step">
-                <span class="step-icon">🏠</span>
-                <span>Выберите "На экран Домой"</span>
-            </div>
-            <button class="modal-close" onclick="closeModal()">Понятно</button>
+        <button class="btn btn-secondary" id="iosInstructionsBtn">📱 Инструкция для iPhone</button>
+
+        <div class="navigation">
+            <a href="https://project15895556.tilda.ws/#menu" class="nav-btn nav-menu">📋 Меню</a>
+            <a href="https://project15895556.tilda.ws/#openReMarkedWidget" class="nav-btn nav-reserve">📅 Забронировать</a>
+            <a href="tel:+79252553334" class="nav-btn nav-call">📞 Позвонить</a>
+            <a href="https://project15895556.tilda.ws/#events" class="nav-btn nav-events">🎉 События</a>
+            <a href="https://project15895556.tilda.ws/#about" class="nav-btn nav-about">ℹ️ О нас</a>
+            <a href="https://rieslingboyz.ru/#contacts" class="nav-btn nav-contacts">📍 Контакты</a>
+        </div>
+
+        <div class="note">
+            После установки — нажимайте на иконку на рабочем столе.
         </div>
     </div>
 
-    <svg class="ornament" viewBox="0 0 1200 80" preserveAspectRatio="none">
-        <path d="M0,40 Q150,20 300,40 T600,40 T900,40 T1200,40 L1200,80 L0,80 Z" fill="#E8E4D5" opacity="0.6"/>
-        <path d="M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,80 L0,80 Z" fill="#C8D8E8" opacity="0.4"/>
-        <circle cx="100" cy="60" r="8" fill="#8B956D" opacity="0.3"/>
-        <circle cx="300" cy="65" r="6" fill="#A8B89F" opacity="0.3"/>
-        <circle cx="500" cy="60" r="10" fill="#C8D8E8" opacity="0.3"/>
-        <circle cx="700" cy="65" r="7" fill="#E8E4D5" opacity="0.4"/>
-        <circle cx="900" cy="60" r="9" fill="#8B956D" opacity="0.3"/>
-        <circle cx="1100" cy="65" r="8" fill="#A8B89F" opacity="0.3"/>
-    </svg>
+    <!-- Модалка для iOS -->
+    <div id="iosModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); z-index:200; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:28px; max-width:300px; width:85%; padding:24px 20px 28px; text-align:center;">
+            <h3 style="margin-bottom:16px;">📱 Установить на iPhone</h3>
+            <div style="background:#f2f2f7; border-radius:14px; padding:12px; margin:16px 0; text-align:left;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                    <span style="background:#007aff; color:white; width:24px; height:24px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;">1</span>
+                    Нажмите «Поделиться» ⎕
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                    <span style="background:#007aff; color:white; width:24px; height:24px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;">2</span>
+                    Прокрутите вниз → «На экран Домой»
+                </div>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="background:#007aff; color:white; width:24px; height:24px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;">3</span>
+                    Нажмите «Добавить»
+                </div>
+            </div>
+            <button id="closeModalBtn" style="background:#007aff; color:white; border:none; border-radius:40px; padding:12px 24px; font-size:17px; font-weight:600; width:100%; cursor:pointer;">Закрыть</button>
+        </div>
+    </div>
 
     <script>
-        let deferredPrompt = null;
-        const installButtons = document.getElementById('installButtons');
-        const installBtnAndroid = document.getElementById('installBtnAndroid');
-        const installBtnIOS = document.getElementById('installBtnIOS');
+        const ua = navigator.userAgent;
+        const isAndroid = /Android/i.test(ua);
+        const isIOS = /iPhone|iPad|iPod/i.test(ua);
+        const isChrome = /Chrome/i.test(ua) && !/Edg/i.test(ua);
+
+        const installBtn = document.getElementById('installBtn');
+        const openChromeBtn = document.getElementById('openChromeBtn');
+        const iosInstructionsBtn = document.getElementById('iosInstructionsBtn');
         const iosModal = document.getElementById('iosModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
 
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-        const isAndroid = /Android/.test(navigator.userAgent);
-
-        if (isStandalone) {
-            installButtons.style.display = 'none';
+        if (isIOS) {
+            document.getElementById('androidSection').style.display = 'none';
+        } else if (isAndroid) {
+            iosInstructionsBtn.style.display = 'none';
         } else {
-            if (isIOS) {
-                installBtnAndroid.style.display = 'none';
-            } else if (isAndroid) {
-                installBtnIOS.style.display = 'none';
-            }
-
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-            });
-
-            installBtnAndroid.addEventListener('click', async () => {
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    const { outcome } = await deferredPrompt.userChoice;
-                    if (outcome === 'accepted') {
-                        installButtons.style.display = 'none';
-                        localStorage.setItem('pwa-installed', 'true');
-                    }
-                    deferredPrompt = null;
-                }
-            });
-
-            installBtnIOS.addEventListener('click', () => {
-                iosModal.classList.add('show');
-            });
-
-            window.addEventListener('appinstalled', () => {
-                installButtons.style.display = 'none';
-                localStorage.setItem('pwa-installed', 'true');
-                deferredPrompt = null;
-            });
+            iosInstructionsBtn.style.display = 'none';
         }
 
-        function closeModal() {
-            iosModal.classList.remove('show');
+        let deferredPrompt = null;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBtn.innerText = '✅ Установлено';
+                    installBtn.disabled = true;
+                }
+                deferredPrompt = null;
+            } else if (isAndroid && !isChrome) {
+                alert('Рекомендуем использовать Chrome. Нажмите на три точки → "Открыть в Chrome", затем повторите установку.');
+            } else if (isAndroid && isChrome && !deferredPrompt) {
+                alert('Установка уже доступна. Если кнопка не появилась, обновите страницу.');
+            } else {
+                alert('Для установки используйте Chrome на Android.');
+            }
+        });
+
+        openChromeBtn.addEventListener('click', () => {
+            if (isAndroid) {
+                const currentUrl = window.location.href;
+                if (isChrome) {
+                    alert('Вы уже в Chrome. Нажмите "Установить" выше.');
+                } else {
+                    window.location.href = `intent://${window.location.host}${window.location.pathname}${window.location.search}#Intent;scheme=https;package=com.android.chrome;end`;
+                    setTimeout(() => {
+                        alert('Не удалось открыть автоматически. Скопируйте ссылку и откройте вручную в Chrome.\n\n' + currentUrl);
+                    }, 500);
+                }
+            } else {
+                alert('Эта кнопка только для Android');
+            }
+        });
+
+        iosInstructionsBtn.addEventListener('click', () => {
+            if (isIOS) {
+                iosModal.style.display = 'flex';
+            } else {
+                alert('На iPhone откройте этот сайт в Safari, нажмите «Поделиться» → «На экран Домой»');
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            iosModal.style.display = 'none';
+        });
+
+        iosModal.addEventListener('click', (e) => {
+            if (e.target === iosModal) iosModal.style.display = 'none';
+        });
+
+        if (isAndroid && !isChrome) {
+            setTimeout(() => {
+                if (confirm('Для установки приложения рекомендуем использовать Chrome. Открыть в Chrome?')) {
+                    openChromeBtn.click();
+                }
+            }, 500);
         }
 
         if ('serviceWorker' in navigator) {
