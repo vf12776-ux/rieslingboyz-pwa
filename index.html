@@ -125,6 +125,9 @@
             justify-content: center;
             flex-shrink: 0;
         }
+        .step-num-android {
+            background: #8B956D;
+        }
     </style>
 </head>
 <body>
@@ -169,7 +172,26 @@
                 <span class="step-num">3</span>
                 <span>Нажмите «Добавить»</span>
             </div>
-            <button class="install-btn install-btn-android" onclick="document.getElementById('iosModal').classList.remove('show')">Закрыть</button>
+            <button class="install-btn install-btn-ios" onclick="document.getElementById('iosModal').classList.remove('show')">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="modal" id="androidModal">
+        <div class="modal-content">
+            <h3>🤖 Установить на Android</h3>
+            <div class="step">
+                <span class="step-num step-num-android">1</span>
+                <span>Нажмите ⋮ в правом верхнем углу</span>
+            </div>
+            <div class="step">
+                <span class="step-num step-num-android">2</span>
+                <span>Выберите «Установить приложение» или «Добавить на главный экран»</span>
+            </div>
+            <div class="step">
+                <span class="step-num step-num-android">3</span>
+                <span>Подтвердите установку</span>
+            </div>
+            <button class="install-btn install-btn-android" onclick="document.getElementById('androidModal').classList.remove('show')">Закрыть</button>
         </div>
     </div>
 
@@ -179,6 +201,7 @@
         const installBtnAndroid = document.getElementById('installBtnAndroid');
         const installBtnIOS = document.getElementById('installBtnIOS');
         const iosModal = document.getElementById('iosModal');
+        const androidModal = document.getElementById('androidModal');
 
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
@@ -207,6 +230,8 @@
                         localStorage.setItem('pwa-installed', 'true');
                     }
                     deferredPrompt = null;
+                } else {
+                    androidModal.classList.add('show');
                 }
             });
 
