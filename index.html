@@ -57,8 +57,74 @@
         .subtitle {
             color: #7A845D;
             font-size: 16px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-weight: 300;
+        }
+
+        .install-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .install-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .install-btn:active {
+            transform: scale(0.98);
+        }
+
+        .install-btn-android {
+            background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .install-btn-ios {
+            background: linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%);
+            color: white;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            animation: pulse-ios 2s infinite;
+        }
+
+        .icon-android {
+            font-size: 28px;
+        }
+
+        .icon-ios {
+            font-size: 32px;
+            filter: drop-shadow(0 2px 4px rgba(255,255,255,0.3));
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(139, 149, 109, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(139, 149, 109, 0.6);
+            }
+        }
+
+        @keyframes pulse-ios {
+            0%, 100% {
+                box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            }
+            50% {
+                box-shadow: 0 6px 35px rgba(0,0,0,0.5);
+            }
         }
 
         .buttons {
@@ -114,60 +180,70 @@
             color: #3A4A5A;
         }
 
-        .install-btn {
-            display: block;
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 18px 30px;
-            background: linear-gradient(135deg, #8B956D 0%, #6A7347 100%);
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h3 {
+            color: #5A6347;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            color: #6A7357;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .modal-content .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .modal-content .step-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .modal-close {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
             color: white;
             border: none;
-            border-radius: 15px;
-            font-size: 18px;
+            border-radius: 10px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(139, 149, 109, 0.4);
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        .install-btn:active {
-            transform: scale(0.98);
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(139, 149, 109, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 30px rgba(139, 149, 109, 0.6);
-            }
-        }
-
-        .install-hint {
-            background: rgba(255,255,255,0.9);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            display: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .install-hint.show {
-            display: block;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .install-hint h3 {
-            color: #5A6347;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .install-hint p {
-            color: #6A7357;
-            font-size: 14px;
-            line-height: 1.6;
         }
 
         .ornament {
@@ -211,9 +287,16 @@
         <h1>Riesling Boyz</h1>
         <p class="subtitle">винное бистро</p>
 
-        <button class="install-btn" id="installBtn">
-            📱 Установить приложение
-        </button>
+        <div class="install-buttons" id="installButtons">
+            <button class="install-btn install-btn-android" id="installBtnAndroid">
+                <span class="icon-android">🤖</span>
+                <span>Установить для Android</span>
+            </button>
+            <button class="install-btn install-btn-ios" id="installBtnIOS">
+                <span class="icon-ios"></span>
+                <span>Установить для iPhone</span>
+            </button>
+        </div>
 
         <div class="buttons">
             <a href="https://project15895556.tilda.ws/#menu" class="btn btn-menu">📋 Меню</a>
@@ -223,15 +306,20 @@
             <a href="https://project15895556.tilda.ws/#about" class="btn btn-about">ℹ️ О нас</a>
             <a href="https://rieslingboyz.ru/#contacts" class="btn btn-contacts">📍 Контакты</a>
         </div>
+    </div>
 
-        <div class="install-hint" id="installHint">
-            <h3>📱 Установить приложение</h3>
-            <p>
-                <strong>iPhone/iPad:</strong><br>
-                Нажмите "Поделиться" → "На экран Домой"<br><br>
-                <strong>Android:</strong><br>
-                Нажмите ⋮ в браузере → "Добавить на главный экран"
-            </p>
+    <div class="modal" id="iosModal">
+        <div class="modal-content">
+            <h3>Установка на iPhone</h3>
+            <div class="step">
+                <span class="step-icon"></span>
+                <span>Нажмите кнопку "Поделиться"</span>
+            </div>
+            <div class="step">
+                <span class="step-icon">🏠</span>
+                <span>Выберите "На экран Домой"</span>
+            </div>
+            <button class="modal-close" onclick="closeModal()">Понятно</button>
         </div>
     </div>
 
@@ -248,65 +336,56 @@
 
     <script>
         let deferredPrompt = null;
-        const installBtn = document.getElementById('installBtn');
-        const installHint = document.getElementById('installHint');
+        const installButtons = document.getElementById('installButtons');
+        const installBtnAndroid = document.getElementById('installBtnAndroid');
+        const installBtnIOS = document.getElementById('installBtnIOS');
+        const iosModal = document.getElementById('iosModal');
 
-        // Проверяем, запущено ли уже как PWA
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
 
         if (isStandalone) {
-            // Уже установлено - скрываем кнопку
-            if (installBtn) installBtn.style.display = 'none';
-        } else if (isMobile) {
-            // Мобильное устройство - кнопка уже видна по умолчанию
-            
-            // iOS: показываем инструкцию, скрываем кнопку
-            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-                if (installBtn) installBtn.style.display = 'none';
-                if (installHint) installHint.classList.add('show');
+            installButtons.style.display = 'none';
+        } else {
+            if (isIOS) {
+                installBtnAndroid.style.display = 'none';
+            } else if (isAndroid) {
+                installBtnIOS.style.display = 'none';
             }
 
-            // Перехватываем beforeinstallprompt для Android
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
             });
 
-            // Клик по кнопке установки
-            if (installBtn) {
-                installBtn.addEventListener('click', async () => {
-                    if (deferredPrompt) {
-                        // Браузер поддерживает PWA - показываем нативное окно
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        
-                        if (outcome === 'accepted') {
-                            installBtn.style.display = 'none';
-                            localStorage.setItem('pwa-installed', 'true');
-                        }
-                        deferredPrompt = null;
-                    } else {
-                        // Браузер не поддерживает - показываем инструкцию
-                        installBtn.style.display = 'none';
-                        installHint.classList.add('show');
+            installBtnAndroid.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    if (outcome === 'accepted') {
+                        installButtons.style.display = 'none';
+                        localStorage.setItem('pwa-installed', 'true');
                     }
-                });
-            }
+                    deferredPrompt = null;
+                }
+            });
 
-            // Установка прошла
+            installBtnIOS.addEventListener('click', () => {
+                iosModal.classList.add('show');
+            });
+
             window.addEventListener('appinstalled', () => {
-                if (installBtn) installBtn.style.display = 'none';
-                if (installHint) installHint.classList.remove('show');
+                installButtons.style.display = 'none';
                 localStorage.setItem('pwa-installed', 'true');
                 deferredPrompt = null;
             });
-        } else {
-            // Десктоп - скрываем кнопку
-            if (installBtn) installBtn.style.display = 'none';
         }
 
-        // Регистрация Service Worker
+        function closeModal() {
+            iosModal.classList.remove('show');
+        }
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
                 .then(reg => console.log('SW registered'))
