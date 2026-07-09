@@ -212,17 +212,67 @@
         <circle cx="1100" cy="65" r="8" fill="#A8B89F" opacity="0.3"/>
     </svg>
 
-    <script>
-        // Показываем подсказку установки на iOS
-        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
-            document.getElementById('installHint').classList.add('show');
+        <script>
+        let deferredPrompt = null;
+        const installBtn = document.getElementById('installBtn');
+        const installHint = document.getElementById('installHint');
+
+        function hideInstallUI() {
+            if (installBtn) installBtn.style.display = 'none';
+            if (installHint) installHint.classList.remove('show');
         }
 
-        // Регистрация Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('SW registered'))
-                .catch(err => console.log('SW registration failed', err));
+        function showInstallUI() {
+            if (installBtn) installBtn.style.display = 'block';
+        }
+
+        // Проверяем, запущено ли уже как PWA
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+        if (isStandalone) {
+            hideInstallUI();
+        } else {
+            // iOS: показываем текстовую инструкцию
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                if (installHint) installHint.classList.add('show');
+            }
+
+            // Android/Chrome: перехватываем нативное окно
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault(); // 🔑 Обязательно! Отключает всплывающее окно Chrome
+                deferredPrompt = e;
+                showInstallUI();    // Показываем нашу кнопку
+            });
+
+            // Клик по нашей кнопке
+            if (installBtn) {
+                installBtn.addEventListener('click', async () => {
+                    if (!deferredPrompt) {
+                        // Если Chrome не дал событие (например, уже отклоняли), показываем инструкцию
+                        hideInstallUI();
+                        if (installHint) installHint.classList.add('show');
+                        return;
+                    }
+
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+
+                    if (outcome === 'accepted') {
+                        hideInstallUI();
+                        localStorage.setItem('pwa-installed', 'true');
+                    } else {
+                        if (installHint) installHint.classList.add('show');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+
+            // Если установка прошла через адресную строку или другие способы
+            window.addEventListener('appinstalled', () => {
+                hideInstallUI();
+                localStorage.setItem('pwa-installed', 'true');
+                deferredPrompt = null;
+            });
         }
     </script>
 </body>
