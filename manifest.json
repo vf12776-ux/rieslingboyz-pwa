@@ -1,8 +1,8 @@
 {
   "name": "Riesling Boyz",
   "short_name": "Riesling",
-  "description": "Винное бистро - меню, бронирование, события",
-  "start_url": "/",
+  "description": "Винное бистро",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#E8E4D5",
   "theme_color": "#8B956D",
@@ -11,8 +11,7 @@
     {
       "src": "icon-256.png",
       "sizes": "256x256",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
