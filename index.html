@@ -114,6 +114,36 @@
             color: #3A4A5A;
         }
 
+        .install-btn {
+            display: block;
+            width: 100%;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #8B956D 0%, #6A7347 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 149, 109, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .install-btn:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(139, 149, 109, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(139, 149, 109, 0.6);
+            }
+        }
+
         .install-hint {
             background: rgba(255,255,255,0.9);
             padding: 20px;
@@ -181,6 +211,10 @@
         <h1>Riesling Boyz</h1>
         <p class="subtitle">винное бистро</p>
 
+        <button class="install-btn" id="installBtn">
+            📱 Установить приложение
+        </button>
+
         <div class="buttons">
             <a href="https://project15895556.tilda.ws/#menu" class="btn btn-menu">📋 Меню</a>
             <a href="https://project15895556.tilda.ws/#openReMarkedWidget" class="btn btn-reserve">📅 Забронировать</a>
@@ -212,72 +246,71 @@
         <circle cx="1100" cy="65" r="8" fill="#A8B89F" opacity="0.3"/>
     </svg>
 
-            <script>
+    <script>
         let deferredPrompt = null;
         const installBtn = document.getElementById('installBtn');
         const installHint = document.getElementById('installHint');
-
-        function hideInstallUI() {
-            if (installBtn) installBtn.style.display = 'none';
-            if (installHint) installHint.classList.remove('show');
-        }
-
-        function showInstallUI() {
-            if (installBtn) installBtn.style.display = 'block';
-        }
-
-        function showInstallHint() {
-            if (installBtn) installBtn.style.display = 'none';
-            if (installHint) installHint.classList.add('show');
-        }
 
         // Проверяем, запущено ли уже как PWA
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         if (isStandalone) {
-            hideInstallUI();
+            // Уже установлено - скрываем кнопку
+            if (installBtn) installBtn.style.display = 'none';
         } else if (isMobile) {
-            // Показываем кнопку на всех мобильных устройствах
-            showInstallUI();
-
-            // iOS: сразу показываем инструкцию вместо кнопки
+            // Мобильное устройство - кнопка уже видна по умолчанию
+            
+            // iOS: показываем инструкцию, скрываем кнопку
             if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-                showInstallHint();
+                if (installBtn) installBtn.style.display = 'none';
+                if (installHint) installHint.classList.add('show');
             }
 
-            // Android/другие: пытаемся перехватить beforeinstallprompt
+            // Перехватываем beforeinstallprompt для Android
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
             });
 
-            // Клик по кнопке
+            // Клик по кнопке установки
             if (installBtn) {
                 installBtn.addEventListener('click', async () => {
                     if (deferredPrompt) {
-                        // Браузер поддерживает нативную установку
+                        // Браузер поддерживает PWA - показываем нативное окно
                         deferredPrompt.prompt();
                         const { outcome } = await deferredPrompt.userChoice;
                         
                         if (outcome === 'accepted') {
-                            hideInstallUI();
+                            installBtn.style.display = 'none';
                             localStorage.setItem('pwa-installed', 'true');
                         }
                         deferredPrompt = null;
                     } else {
-                        // Браузер не поддерживает beforeinstallprompt - показываем инструкцию
-                        showInstallHint();
+                        // Браузер не поддерживает - показываем инструкцию
+                        installBtn.style.display = 'none';
+                        installHint.classList.add('show');
                     }
                 });
             }
 
             // Установка прошла
             window.addEventListener('appinstalled', () => {
-                hideInstallUI();
+                if (installBtn) installBtn.style.display = 'none';
+                if (installHint) installHint.classList.remove('show');
                 localStorage.setItem('pwa-installed', 'true');
                 deferredPrompt = null;
             });
+        } else {
+            // Десктоп - скрываем кнопку
+            if (installBtn) installBtn.style.display = 'none';
+        }
+
+        // Регистрация Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('SW registered'))
+                .catch(err => console.log('SW registration failed', err));
         }
     </script>
 </body>
