@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Riesling Boyz</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8B956D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Riesling Boyz">
+    <link rel="apple-touch-icon" href="icon-256.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #E8E4D5 0%, #A8B89F 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            color: #5A6347;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #7A845D;
+            font-size: 16px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: block;
+            padding: 18px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-menu {
+            background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
+            color: white;
+        }
+
+        .btn-reserve {
+            background: linear-gradient(135deg, #C8D8E8 0%, #A8C0D8 100%);
+            color: #4A5A6A;
+        }
+
+        .btn-call {
+            background: linear-gradient(135deg, #E8E4D5 0%, #D8D4C5 100%);
+            color: #5A5347;
+        }
+
+        .btn-events {
+            background: linear-gradient(135deg, #B8C8A8 0%, #98A888 100%);
+            color: white;
+        }
+
+        .btn-about {
+            background: linear-gradient(135deg, #D8E4D5 0%, #B8C4B5 100%);
+            color: #4A5347;
+        }
+
+        .btn-contacts {
+            background: linear-gradient(135deg, #C8D4E8 0%, #A8B4C8 100%);
+            color: #3A4A5A;
+        }
+
+        .install-hint {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .install-hint.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .install-hint h3 {
+            color: #5A6347;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .install-hint p {
+            color: #6A7357;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .ornament {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-height: 700px) {
+            .logo {
+                font-size: 60px;
+                margin-bottom: 15px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .btn {
+                padding: 15px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🍷</div>
+        <h1>Riesling Boyz</h1>
+        <p class="subtitle">винное бистро</p>
+
+        <div class="buttons">
+            <a href="https://project15895556.tilda.ws/#menu" class="btn btn-menu">📋 Меню</a>
+            <a href="https://project15895556.tilda.ws/#openReMarkedWidget" class="btn btn-reserve">📅 Забронировать</a>
+            <a href="tel:+79252553334" class="btn btn-call">📞 Позвонить</a>
+            <a href="https://project15895556.tilda.ws/#events" class="btn btn-events">🎉 События</a>
+            <a href="https://project15895556.tilda.ws/#about" class="btn btn-about">ℹ️ О нас</a>
+            <a href="https://rieslingboyz.ru/#contacts" class="btn btn-contacts">📍 Контакты</a>
+        </div>
+
+        <div class="install-hint" id="installHint">
+            <h3>📱 Установить приложение</h3>
+            <p>
+                <strong>iPhone/iPad:</strong><br>
+                Нажмите "Поделиться" → "На экран Домой"<br><br>
+                <strong>Android:</strong><br>
+                Нажмите ⋮ в браузере → "Добавить на главный экран"
+            </p>
+        </div>
+    </div>
+
+    <svg class="ornament" viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path d="M0,40 Q150,20 300,40 T600,40 T900,40 T1200,40 L1200,80 L0,80 Z" fill="#E8E4D5" opacity="0.6"/>
+        <path d="M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,80 L0,80 Z" fill="#C8D8E8" opacity="0.4"/>
+        <circle cx="100" cy="60" r="8" fill="#8B956D" opacity="0.3"/>
+        <circle cx="300" cy="65" r="6" fill="#A8B89F" opacity="0.3"/>
+        <circle cx="500" cy="60" r="10" fill="#C8D8E8" opacity="0.3"/>
+        <circle cx="700" cy="65" r="7" fill="#E8E4D5" opacity="0.4"/>
+        <circle cx="900" cy="60" r="9" fill="#8B956D" opacity="0.3"/>
+        <circle cx="1100" cy="65" r="8" fill="#A8B89F" opacity="0.3"/>
+    </svg>
+
+    <script>
+        // Показываем подсказку установки на iOS
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+            document.getElementById('installHint').classList.add('show');
+        }
+
+        // Регистрация Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('SW registered'))
+                .catch(err => console.log('SW registration failed', err));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нет подключения - Riesling Boyz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #E8E4D5 0%, #A8B89F 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            opacity: 0.6;
+        }
+
+        h1 {
+            color: #5A6347;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        p {
+            color: #6A7357;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 400px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #A8B89F 0%, #8B956D 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .ornament {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon">📡</div>
+    <h1>Нет подключения к интернету</h1>
+    <p>Проверьте соединение и попробуйте снова. Для работы приложения требуется доступ в интернет.</p>
+    <a href="/" class="btn">🔄 Попробовать снова</a>
+
+    <svg class="ornament" viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path d="M0,40 Q150,20 300,40 T600,40 T900,40 T1200,40 L1200,80 L0,80 Z" fill="#E8E4D5" opacity="0.6"/>
+        <path d="M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,80 L0,80 Z" fill="#C8D8E8" opacity="0.4"/>
+        <circle cx="100" cy="60" r="8" fill="#8B956D" opacity="0.3"/>
+        <circle cx="300" cy="65" r="6" fill="#A8B89F" opacity="0.3"/>
+        <circle cx="500" cy="60" r="10" fill="#C8D8E8" opacity="0.3"/>
+        <circle cx="700" cy="65" r="7" fill="#E8E4D5" opacity="0.4"/>
+        <circle cx="900" cy="60" r="9" fill="#8B956D" opacity="0.3"/>
+        <circle cx="1100" cy="65" r="8" fill="#A8B89F" opacity="0.3"/>
+    </svg>
+</body>
+</html>
